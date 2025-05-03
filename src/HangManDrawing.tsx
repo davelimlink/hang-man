@@ -101,7 +101,7 @@ function HangManDrawing() {
       <div
         style={{
           height: "10px",
-          width: "200px",
+          width: "180px",
           background: "black",
           marginLeft: "120px",
         }}
