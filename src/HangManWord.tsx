@@ -1,9 +1,14 @@
 interface HangManWordProps {
   wordToGuess: string;
   guessedLetters: string[];
+  reveal?: boolean;
 }
 
-function HangManWord({ wordToGuess, guessedLetters }: HangManWordProps) {
+function HangManWord({
+  wordToGuess,
+  guessedLetters,
+  reveal = false,
+}: HangManWordProps) {
   return (
     <div
       style={{
@@ -27,16 +32,12 @@ function HangManWord({ wordToGuess, guessedLetters }: HangManWordProps) {
           >
             <span
               style={{
-                visibility: guessedLetters.includes(letter)
-                  ? "visible"
-                  : "hidden",
-                color: `${
-                  wordToGuess
-                    .split("")
-                    .every((letter) => guessedLetters.includes(letter))
-                    ? "black"
-                    : "red"
-                }`,
+                visibility:
+                  guessedLetters.includes(letter) || reveal
+                    ? "visible"
+                    : "hidden",
+                color:
+                  !guessedLetters.includes(letter) && reveal ? "red" : "black",
               }}
             >
               {letter}

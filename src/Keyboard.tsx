@@ -23,10 +23,25 @@ const keys = [
   "t",
   "u",
   "v",
+  "w",
+  "x",
+  "y",
   "z",
 ];
 
-function Keyboard() {
+interface KeyboardProps {
+  activeLetter: string[];
+  inactiveLetters: string[];
+  addGuessedLetter: (letter: string) => void;
+  disabled?: boolean;
+}
+
+function Keyboard({
+  activeLetter,
+  inactiveLetters,
+  addGuessedLetter,
+  disabled = false,
+}: KeyboardProps) {
   return (
     <div
       style={{
@@ -35,11 +50,22 @@ function Keyboard() {
         gap: ".2rem",
       }}
     >
-      {keys.map((k) => (
-        <button className={`${style.btn}`} key={k}>
-          {k.toUpperCase()}
-        </button>
-      ))}
+      {keys.map((key) => {
+        const isActive = activeLetter.includes(key);
+        const isInactive = inactiveLetters.includes(key);
+        return (
+          <button
+            onClick={() => addGuessedLetter(key)}
+            className={`${style.btn} ${isActive ? style.active : ""} ${
+              isInactive ? style.inactive : ""
+            }`}
+            disabled={isActive || isInactive || disabled}
+            key={key}
+          >
+            {key}
+          </button>
+        );
+      })}
     </div>
   );
 }
