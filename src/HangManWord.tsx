@@ -1,8 +1,9 @@
-import React from "react";
+interface HangManWordProps {
+  wordToGuess: string;
+  guessedLetters: string[];
+}
 
-function HangManWord() {
-  const word = "test";
-  const guessedLetters = ["t", "e", "s", "t"];
+function HangManWord({ wordToGuess, guessedLetters }: HangManWordProps) {
   return (
     <div
       style={{
@@ -14,7 +15,7 @@ function HangManWord() {
         fontFamily: "monospace",
       }}
     >
-      {word.split("").map((letter, index) => {
+      {wordToGuess.split("").map((letter, index) => {
         return (
           <span
             key={index}
@@ -29,7 +30,13 @@ function HangManWord() {
                 visibility: guessedLetters.includes(letter)
                   ? "visible"
                   : "hidden",
-                color: letter === word ? "black" : "red",
+                color: `${
+                  wordToGuess
+                    .split("")
+                    .every((letter) => guessedLetters.includes(letter))
+                    ? "black"
+                    : "red"
+                }`,
               }}
             >
               {letter}

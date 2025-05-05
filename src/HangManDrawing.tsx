@@ -78,15 +78,16 @@ const rightLeg = (
   />
 );
 
-function HangManDrawing() {
+const bodyParts = [head, body, leftArm, rightArm, leftLeg, rightLeg];
+
+interface HandManDrawingProps {
+  numberOfGuesses: number;
+}
+
+function HangManDrawing({ numberOfGuesses }: HandManDrawingProps) {
   return (
     <div style={{ position: "relative" }}>
-      {rightLeg}
-      {leftLeg}
-      {rightArm}
-      {leftArm}
-      {body}
-      {head}
+      {bodyParts.slice(0, numberOfGuesses)}
       <div
         style={{
           height: "50px",
