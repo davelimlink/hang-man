@@ -8,7 +8,7 @@ function HangManWord() {
       style={{
         display: "flex",
         gap: " .25rem",
-        fontSize: "3rem",
+        fontSize: "2.5rem",
         fontWeight: "bold",
         textTransform: "uppercase",
         fontFamily: "monospace",
