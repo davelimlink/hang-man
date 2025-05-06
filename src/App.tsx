@@ -63,7 +63,7 @@ function App() {
     return () => {
       document.removeEventListener("keypress", handleKeyDown);
     };
-  }, [guessedLetters]); // Check if the key pressed is a letter
+  }, [addGuessedLetter]); // Check if the key pressed is a letter
 
   return (
     <>
