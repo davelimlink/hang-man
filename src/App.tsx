@@ -18,18 +18,20 @@ function App() {
     (letter) => !wordToGuess.includes(letter)
   );
 
-  const isLoser = inCorrectLetters.length >= 6;
+  const isLoser = inCorrectLetters.length >= 6; // Number of incorrect guesses
+  //Hangman drawing is only 6 parts
   const isWinner = wordToGuess
-    .split("")
+    .split("") // Split the word into letters
     .every((letter) => guessedLetters.includes(letter));
 
+  // Check if all letters in the word have been guessed
   const addGuessedLetter = useCallback(
     (letter: string) => {
       if (guessedLetters.includes(letter) || isLoser || isWinner) return;
 
       setGuessedLetters((currentsLetters) => [...currentsLetters, letter]);
     },
-    [guessedLetters, isLoser, isWinner]
+    [guessedLetters, isLoser, isWinner] // Check if the letter has already been guessed
   );
 
   useEffect(() => {
@@ -49,6 +51,7 @@ function App() {
     };
   }, [guessedLetters]);
 
+  // Handle letter guesses
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const key = e.key;
@@ -60,7 +63,7 @@ function App() {
     return () => {
       document.removeEventListener("keypress", handleKeyDown);
     };
-  }, [guessedLetters]);
+  }, [guessedLetters]); // Check if the key pressed is a letter
 
   return (
     <>

@@ -37,7 +37,7 @@ function HangManWord({
                     ? "visible"
                     : "hidden",
                 color:
-                  !guessedLetters.includes(letter) && reveal ? "red" : "black",
+                  !guessedLetters.includes(letter) && reveal ? "red" : "blue",
               }}
             >
               {letter}

@@ -40,7 +40,7 @@ function Keyboard({
   activeLetter,
   inactiveLetters,
   addGuessedLetter,
-  disabled = false,
+  disabled = false, // default to false
 }: KeyboardProps) {
   return (
     <div
@@ -59,7 +59,7 @@ function Keyboard({
             className={`${style.btn} ${isActive ? style.active : ""} ${
               isInactive ? style.inactive : ""
             }`}
-            disabled={isActive || isInactive || disabled}
+            disabled={isActive || isInactive || disabled} // disable button if letter is already guessed or game is over
             key={key}
           >
             {key}
