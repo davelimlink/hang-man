@@ -34,6 +34,20 @@ function App() {
     [guessedLetters, isLoser, isWinner] // Check if the letter has already been guessed
   );
 
+  // Handle letter guesses
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const key = e.key;
+      if (!key.match(/^[a-z]$/)) return;
+      e.preventDefault();
+      addGuessedLetter(key);
+    };
+    document.addEventListener("keypress", handleKeyDown);
+    return () => {
+      document.removeEventListener("keypress", handleKeyDown);
+    };
+  }, [guessedLetters]); // Check if the key pressed is a letter
+
   useEffect(() => {
     const handlers = (e: KeyboardEvent) => {
       const key = e.key;
@@ -49,21 +63,7 @@ function App() {
     return () => {
       document.removeEventListener("keypress", handlers);
     };
-  }, [guessedLetters]);
-
-  // Handle letter guesses
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const key = e.key;
-      if (!key.match(/^[a-z]$/)) return;
-      e.preventDefault();
-      addGuessedLetter(key);
-    };
-    document.addEventListener("keypress", handleKeyDown);
-    return () => {
-      document.removeEventListener("keypress", handleKeyDown);
-    };
-  }, [addGuessedLetter]); // Check if the key pressed is a letter
+  }, []);
 
   return (
     <>
